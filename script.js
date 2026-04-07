@@ -28,8 +28,8 @@ document.getElementById("guessBtn").disabled = false;
 document.getElementById("giveUpBtn").disabled = false;
 document.getElementById("playBtn").disabled = true;
 
-   for (let i=0; i < radios.length; i++){
-        levelRadios[i].disabled = true;
+    for (let i=0; i < radios.length; i++){
+        radios[i].disabled = true;
     }
 
 })
