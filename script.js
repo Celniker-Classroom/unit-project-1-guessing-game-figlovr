@@ -33,3 +33,23 @@ document.getElementById("playBtn").disabled = true;
     }
 
 })
+
+//Guessing
+document.getElementById("guessBtn").addEventListener("click", function() {
+    let input = document.getElementById("guess").value;
+    let num = parseInt(input);
+
+    if (isNaN(num)) {
+        document.getElementById("msg").textContent = "Please enter a vald number!";
+        return;
+    }
+
+  guessCount ++;
+  let diff = Math.abs(num - answer);
+
+  //correct
+  if (num === answer){
+    document.getElementById("msg").textContent = "Correct! " + playerName + " got it in " + guessCount + " guesses.";
+  }
+  
+})
