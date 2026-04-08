@@ -50,6 +50,51 @@ document.getElementById("guessBtn").addEventListener("click", function() {
   //correct
   if (num === answer){
     document.getElementById("msg").textContent = "Correct! " + playerName + " got it in " + guessCount + " guesses.";
+    updateScore(guessCount);
+    resetButtons(); //stop guess & give up; restart play
   }
-  
+  //higher
+  else if (num > answer) {
+    let temp = "";
+    if (diff <= 2){
+        temp = "Hot!";
+    } else if (diff <=5){
+        temp = "Warm...";
+    } else {
+        temp = "Cold.";
+    }
+    document.getElementById("proximity").textContent = "Too high... " + temp + "Guess again.";
+  }
+  //lower
+  else {
+    let temp = "";
+    if (diff <= 2){
+        temp = "Hot!";
+    } else if (diff <=5){
+        temp = "Warm...";
+    } else {
+        temp = "Cold.";
+    }
+    document.getElementById("proximity").textContent = "Too low... " + temp + "Guess again.";
+  }
 })
+
+//update score for wins
+function updateScore(score) { 
+    totalWins ++;
+    totalGuesses += score;
+
+    document.getElementById("wins").textContent = "Total wins: " + totalWins;
+    document.getElementById("wins").textContent = "Average score: " + (totalGuesses/totalWins).toFixed(1);
+}
+
+function resetButtons() {
+document.getElementById("guessBtn").disabled = true;
+document.getElementById("giveUpBtn").disabled = false;
+document.getElementById("playBtn").disabled = true;
+    
+    let radios = document.getElementsByName("level");
+    for (let i=0; i < radios.length; i++){
+        radios[i].disabled = true;
+    }
+}
