@@ -8,6 +8,7 @@ let scores = 0;
 
 //Player Name
 let playerName = prompt("Enter your name:");
+playerName = text.charAt(0).toUpperCase() + text.slice(1);
 
 //Play
 document.getElementById("playBtn").addEventListener("click", function() {
@@ -21,6 +22,7 @@ document.getElementById("playBtn").addEventListener("click", function() {
 
 //round setup
 answer = Math.floor(Math.random() * range) + 1;
+guessCount = 0; //reset guess count for new round
 //Disable & Enable buttons and radio choices
 document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
 document.getElementById("guess").value="";
@@ -63,7 +65,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("proximity").textContent = "Too high... " + temp + "Guess again.";
+    document.getElementById("msg").textContent = temp + " Too high. Guess again.";
   }
   //lower
   else {
@@ -75,7 +77,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("proximity").textContent = "Too low... " + temp + "Guess again.";
+    document.getElementById("msg").textContent = temp + " Too low. Guess again.";
   }
 })
 
@@ -86,7 +88,22 @@ function updateScore(score) {
 
     document.getElementById("wins").textContent = "Total wins: " + totalWins;
     document.getElementById("wins").textContent = "Average score: " + (totalGuesses/totalWins).toFixed(1);
+
+//update leader board
+scores.push(score);
+score.sort(function(a,b){return a-b});
+
+let leaderboard = document.getElementsByName("leaderboard");
+for (let i=0; i < leaderboard.length; i++){
+    if (i < scores.length){
+        leaderboard[i].textContent = scores[i];
+    } else {
+        leaderboard[i].textContent = "--";
+    }
 }
+}
+
+
 
 function resetButtons() {
 document.getElementById("guessBtn").disabled = true;
