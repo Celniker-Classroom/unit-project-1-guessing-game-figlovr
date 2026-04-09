@@ -82,6 +82,24 @@ document.getElementById("guessBtn").addEventListener("click", function() {
   }
 })
 
+//Give up button
+document.getElementById("giveUpBtn").addEventListener("click", function() {
+    if (guessCount === 1){
+        document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guess." + " The correct answer was " + answer + ".";
+    } else {
+        document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guesses." + " The correct answer was " + answer + ".";
+    }
+    if (diff <= 2){
+        updateScore(5);
+    } else if (diff <=5){
+        updateScore(10);
+    } else {
+        updateScore(20);
+    }
+    resetButtons();
+})
+
+
 //update score for wins
 function updateScore(score) { 
     totalWins ++;
