@@ -84,6 +84,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
 
 //Give up button
 document.getElementById("giveUpBtn").addEventListener("click", function() {
+    let diff = Math.abs(num - answer);
     if (guessCount === 1){
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guess." + " The correct answer was " + answer + ".";
     } else {
@@ -96,6 +97,7 @@ document.getElementById("giveUpBtn").addEventListener("click", function() {
     } else {
         updateScore(20);
     }
+    
     resetButtons();
 })
 
