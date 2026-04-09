@@ -4,7 +4,7 @@ let answer = 0;
 let guessCount = 0;
 let totalWins = 0;
 let totalGuesses = 0;
-let scores = 0;
+let scores = [];
 
 //Player Name
 let playerName = prompt("Enter your name:");
@@ -65,7 +65,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("msg").textContent = temp + " Too high. Guess again." + "high";
+    document.getElementById("msg").textContent = temp + " Too high. Guess again.";
   }
   //lower
   else {
@@ -78,7 +78,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("msg").textContent = temp + " Too low. Guess again." + "low";
+    document.getElementById("msg").textContent = temp + " Too low. Guess again.";
   }
 })
 
@@ -105,9 +105,9 @@ for (let i=0; i < leaderboard.length; i++){
 }
 
 function resetButtons() {
-document.getElementById("guessBtn").disabled = true;
-document.getElementById("giveUpBtn").disabled = true;
-document.getElementById("playBtn").disabled = false;
+    document.getElementById("guessBtn").disabled = true;
+    document.getElementById("giveUpBtn").disabled = true;
+    document.getElementById("playBtn").disabled = false;
     
     let radios = document.getElementsByName("level");
     for (let i=0; i < radios.length; i++){
