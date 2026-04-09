@@ -6,6 +6,9 @@ let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
 
+//setting the date
+document.getElementById("date").textContent = "Date: " + new Date().toLocaleDateString();
+
 //Player Name
 let playerName = prompt("Enter your name:");
 
@@ -84,12 +87,16 @@ document.getElementById("guessBtn").addEventListener("click", function() {
 
 //Give up button
 document.getElementById("giveUpBtn").addEventListener("click", function() {
-    let diff = Math.abs(num - answer);
+    let lastGuessInput = document.getElementById("guess").value;
+    let lastGuessNum = parseInt(lastGuessInput);
+    let num = parseInt(input);
+    let diff = Math.abs(lastGuessNum - answer);
     if (guessCount === 1){
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guess." + " The correct answer was " + answer + ".";
     } else {
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guesses." + " The correct answer was " + answer + ".";
     }
+    
     if (diff <= 2){
         updateScore(5);
     } else if (diff <=5){
@@ -108,20 +115,20 @@ function updateScore(score) {
     totalGuesses += score;
 
     document.getElementById("wins").textContent = "Total wins: " + totalWins;
-    document.getElementById("wins").textContent = "Average score: " + (totalGuesses/totalWins).toFixed(1);
+    document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses/totalWins).toFixed(1);
 
 //update leader board
-scores.push(score);
-scores.sort(function(a,b){return a-b});
+    scores.push(score);
+    scores.sort(function(a,b){return a-b});
 
-let leaderboard = document.getElementsByName("leaderboard");
-for (let i=0; i < leaderboard.length; i++){
-    if (i < scores.length){
+    let leaderboard = document.getElementsByName("leaderboard");
+    for (let i=0; i < leaderboard.length; i++){
+        if (i < scores.length){
         leaderboard[i].textContent = scores[i];
-    } else {
+        } else {
         leaderboard[i].textContent = "--";
+        }
     }
-}
 }
 
 function resetButtons() {
