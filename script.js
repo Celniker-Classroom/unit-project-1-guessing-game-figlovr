@@ -65,7 +65,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("msg").textContent = temp + " Too high. Guess again.";
+    document.getElementById("msg").textContent = temp + " Too high. Guess again." + "high";
   }
   //lower
   else {
@@ -78,7 +78,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     } else {
         temp = "Cold.";
     }
-    document.getElementById("msg").textContent = temp + " Too low. Guess again.";
+    document.getElementById("msg").textContent = temp + " Too low. Guess again." + "low";
   }
 })
 
@@ -106,11 +106,11 @@ for (let i=0; i < leaderboard.length; i++){
 
 function resetButtons() {
 document.getElementById("guessBtn").disabled = true;
-document.getElementById("giveUpBtn").disabled = false;
-document.getElementById("playBtn").disabled = true;
+document.getElementById("giveUpBtn").disabled = true;
+document.getElementById("playBtn").disabled = false;
     
     let radios = document.getElementsByName("level");
     for (let i=0; i < radios.length; i++){
-        radios[i].disabled = true;
+        radios[i].disabled = false;
     }
 }
