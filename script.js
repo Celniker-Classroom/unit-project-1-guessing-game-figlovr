@@ -8,7 +8,6 @@ let scores = 0;
 
 //Player Name
 let playerName = prompt("Enter your name:");
-playerName = text.charAt(0).toUpperCase() + text.slice(1);
 
 //Play
 document.getElementById("playBtn").addEventListener("click", function() {
@@ -42,7 +41,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     let num = parseInt(input);
 
     if (isNaN(num)) {
-        document.getElementById("msg").textContent = "Please enter a vald number!";
+        document.getElementById("msg").textContent = "Please enter a valid number!";
         return;
     }
 
@@ -57,6 +56,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
   }
   //higher
   else if (num > answer) {
+    document.getElementById("guess").value="";
     let temp = "";
     if (diff <= 2){
         temp = "Hot!";
@@ -69,6 +69,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
   }
   //lower
   else {
+    document.getElementById("guess").value="";
     let temp = "";
     if (diff <= 2){
         temp = "Hot!";
@@ -91,7 +92,7 @@ function updateScore(score) {
 
 //update leader board
 scores.push(score);
-score.sort(function(a,b){return a-b});
+scores.sort(function(a,b){return a-b});
 
 let leaderboard = document.getElementsByName("leaderboard");
 for (let i=0; i < leaderboard.length; i++){
@@ -102,8 +103,6 @@ for (let i=0; i < leaderboard.length; i++){
     }
 }
 }
-
-
 
 function resetButtons() {
 document.getElementById("guessBtn").disabled = true;
