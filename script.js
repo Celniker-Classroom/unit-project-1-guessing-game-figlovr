@@ -7,7 +7,25 @@ let totalGuesses = 0;
 let scores = [];
 
 //setting the date
-document.getElementById("date").textContent = "Date: " + new Date().toLocaleDateString();
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let now = new Date();
+let month = months[now.getMonth()];
+//let month = now.getMonth() + 1;
+let date = now.getDate();
+let year = now.getFullYear();
+let suffix = " ";
+
+if (date % 10 === 1 && date !== 11) {
+    suffix = "st";
+} else if (date % 10 === 2 && date !== 12) {
+    suffix = "nd";
+} else if (date % 10 === 3 && date !== 13) {
+    suffix = "rd";
+} else {
+    suffix = "th";
+}
+
+document.getElementById("date").textContent = month + " " + date + suffix + ", " + year;
 
 //Player Name
 let playerName = prompt("Enter your name:");
