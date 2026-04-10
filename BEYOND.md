@@ -1,0 +1,1 @@
+For my above and beyond element, I styled my game using CSS to make it look more aesthetically pleasing. The game now has a green-and-pink color scheme, a nice font, styled buttons, and drop shadows on certain elements. There is also a pretty flower motif and a title.
