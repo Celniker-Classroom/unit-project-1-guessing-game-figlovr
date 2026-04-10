@@ -28,7 +28,7 @@ if (date % 10 === 1 && date !== 11) {
 }
 
 let initialDate = now.toDateString(); // store initial date for comparison
-document.getElementById("date").textContent = month + " " + date + suffix + ", " + year;
+document.getElementById("date").textContent = month + " " + date + suffix + ", " + year + " " + now.toLocaleTimeString();
 
 // Function to check and update date
 function time() {
@@ -49,10 +49,9 @@ function time() {
         } else {
             suffix = "th";
         }
-        document.getElementById("date").textContent = month + " " + date + suffix + ", " + year;
-        // Optionally clear the interval if you want to stop checking after date change
-        // clearInterval(intervalId);
     }
+    // Always update the time part
+    document.getElementById("date").textContent = month + " " + date + suffix + ", " + year + " " + currentDate.toLocaleTimeString();
 }
 
 let intervalId = setInterval(time, 2000);
