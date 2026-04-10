@@ -1,1 +1,26 @@
+body {
+    font-family: Andale-Mono, monospace;
+    padding: 40px;
+    background-color: #364023;
+    color: #9c9f69;
+}
 
+h1 {
+    color: #efd4dd;
+    filter: drop-shadow(5px 5px 10px #9c9f69)
+}
+
+h3 {
+    color: #e6b1c4;
+}
+
+
+#playBtn, #guessBtn, #giveUpBtn {
+    background-color:#c7a39b;
+    color: #364023;
+    font-family: Andale-Mono, monospace;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    border: none;
+    filter: drop-shadow(5px 5px 10px #9c9f69);
+}
