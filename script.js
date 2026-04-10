@@ -27,7 +27,39 @@ if (date % 10 === 1 && date !== 11) {
     suffix = "th";
 }
 
+let initialDate = now.toDateString(); // store initial date for comparison
 document.getElementById("date").textContent = month + " " + date + suffix + ", " + year;
+
+// Function to check and update date
+function time() {
+    let currentDate = new Date();
+    if (currentDate.toDateString() !== initialDate) {
+        // Date has changed, update display
+        initialDate = currentDate.toDateString();
+        month = months[currentDate.getMonth()];
+        date = currentDate.getDate();
+        year = currentDate.getFullYear();
+        suffix = " ";
+        if (date % 10 === 1 && date !== 11) {
+            suffix = "st";
+        } else if (date % 10 === 2 && date !== 12) {
+            suffix = "nd";
+        } else if (date % 10 === 3 && date !== 13) {
+            suffix = "rd";
+        } else {
+            suffix = "th";
+        }
+        document.getElementById("date").textContent = month + " " + date + suffix + ", " + year;
+        // Optionally clear the interval if you want to stop checking after date change
+        // clearInterval(intervalId);
+    }
+}
+
+// Set interval to check every minute (60000 ms)
+let intervalId = setInterval(time, 60000);
+
+// To clear the interval later, for example on some event:
+// clearInterval(intervalId);
 
 //Player Name
 let playerName = prompt("Enter your name:");
