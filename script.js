@@ -6,11 +6,13 @@ let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
 
-//setting the date
+//time and date
+let totalTime = 0;
+let fastestTime = Infinity;
+let startTime;
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let now = new Date();
 let month = months[now.getMonth()];
-//let month = now.getMonth() + 1;
 let date = now.getDate();
 let year = now.getFullYear();
 let suffix = " ";
@@ -42,7 +44,8 @@ document.getElementById("playBtn").addEventListener("click", function() {
 
 //round setup
 answer = Math.floor(Math.random() * range) + 1;
-guessCount = 0; //reset guess count for new round
+guessCount = 0; 
+startTime = Date.now(); 
 //Disable & Enable buttons and radio choices
 document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
 document.getElementById("guess").value="";
@@ -71,8 +74,9 @@ document.getElementById("guessBtn").addEventListener("click", function() {
 
   //correct
   if (num === answer){
+    let elapsed = (Date.now() - startTime) / 1000; // calculate time in seconds
     document.getElementById("msg").textContent = "Correct! " + playerName + " got it in " + guessCount + " guesses.";
-    updateScore(guessCount);
+    updateScore(guessCount, elapsed);
     resetButtons(); //stop guess & give up; restart play
   }
   //higher
@@ -105,6 +109,7 @@ document.getElementById("guessBtn").addEventListener("click", function() {
 
 //Give up button
 document.getElementById("giveUpBtn").addEventListener("click", function() {
+    let elapsed = (Date.now() - startTime) / 1000; 
     let lastGuessInput = document.getElementById("guess").value;
     let lastGuessNum = parseInt(lastGuessInput);
     let num = parseInt(input);
@@ -116,11 +121,11 @@ document.getElementById("giveUpBtn").addEventListener("click", function() {
     }
     
     if (diff <= 2){
-        updateScore(5);
+        updateScore(5, elapsed);
     } else if (diff <=5){
-        updateScore(10);
+        updateScore(10, elapsed);
     } else {
-        updateScore(20);
+        updateScore(20, elapsed);
     }
     
     resetButtons();
@@ -128,12 +133,18 @@ document.getElementById("giveUpBtn").addEventListener("click", function() {
 
 
 //update score for wins
-function updateScore(score) { 
+function updateScore(score, time) { 
     totalWins ++;
     totalGuesses += score;
+    totalTime += time;
+    if (time < fastestTime) {
+        fastestTime = time;
+    }
 
     document.getElementById("wins").textContent = "Total wins: " + totalWins;
     document.getElementById("avgScore").textContent = "Average Score: " + (totalGuesses/totalWins).toFixed(1);
+    document.getElementById("fastest").textContent = "Fastest Game: " + (fastestTime === Infinity ? "--" : fastestTime.toFixed(2) + "s");
+    document.getElementById("avgTime").textContent = "Average Time: " + (totalTime/totalWins).toFixed(2) + "s";
 
 //update leader board
     scores.push(score);
