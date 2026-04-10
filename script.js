@@ -140,7 +140,6 @@ document.getElementById("giveUpBtn").addEventListener("click", function() {
     let elapsed = (Date.now() - startTime) / 1000; 
     let lastGuessInput = document.getElementById("guess").value;
     let lastGuessNum = parseInt(lastGuessInput);
-    let num = parseInt(input);
     let diff = Math.abs(lastGuessNum - answer);
     if (guessCount === 1){
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guess." + " The correct answer was " + answer + ".";
