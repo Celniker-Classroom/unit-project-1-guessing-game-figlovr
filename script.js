@@ -60,6 +60,7 @@ let intervalId = setInterval(time, 2000);
 
 //Player Name
 let playerName = prompt("Enter your name:");
+playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1).toLowerCase();
 
 //Play
 document.getElementById("playBtn").addEventListener("click", function() {
