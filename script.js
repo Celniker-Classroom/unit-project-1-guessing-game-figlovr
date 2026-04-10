@@ -55,7 +55,7 @@ function time() {
     }
 }
 
-let intervalId = setInterval(time, 1000);
+let intervalId = setInterval(time, 2000);
 
 
 //Player Name
