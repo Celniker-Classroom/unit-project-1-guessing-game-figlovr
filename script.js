@@ -55,11 +55,8 @@ function time() {
     }
 }
 
-// Set interval to check every minute (60000 ms)
-let intervalId = setInterval(time, 60000);
+let intervalId = setInterval(time, 1000);
 
-// To clear the interval later, for example on some event:
-// clearInterval(intervalId);
 
 //Player Name
 let playerName = prompt("Enter your name:");
