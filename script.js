@@ -5,8 +5,6 @@ let guessCount = 0;
 let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
-let range = 3;
-let range = 3; // default to easy
 
 //time and date
 let totalTime = 0;
@@ -65,7 +63,7 @@ let playerName = prompt("Enter your name:");
 //Play
 document.getElementById("playBtn").addEventListener("click", function() {
     let radios = document.getElementsByName("level");
-    range = 3;
+    let range = 3;
     for (let i=0; i < radios.length; i++){
         if(radios[i].checked){
             range = parseInt(radios[i].value);
@@ -140,13 +138,22 @@ document.getElementById("guessBtn").addEventListener("click", function() {
 //Give up button
 document.getElementById("giveUpBtn").addEventListener("click", function() {
     let elapsed = (Date.now() - startTime) / 1000; 
+    let lastGuessInput = document.getElementById("guess").value;
+    let lastGuessNum = parseInt(lastGuessInput);
+    let diff = Math.abs(lastGuessNum - answer);
     if (guessCount === 1){
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guess." + " The correct answer was " + answer + ".";
     } else {
         document.getElementById("msg").textContent = playerName + " has given up after " + guessCount + " guesses." + " The correct answer was " + answer + ".";
     }
     
-    updateScore(range, elapsed);
+    if (diff <= 2){
+        updateScore(5, elapsed);
+    } else if (diff <=5){
+        updateScore(10, elapsed);
+    } else {
+        updateScore(20, elapsed);
+    }
     
     resetButtons();
 })
